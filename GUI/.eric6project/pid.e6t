@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Tasks SYSTEM "Tasks-6.0.dtd">
+<!-- eric6 tasks file for project pid -->
+<!-- Saved: 2020-01-06, 22:57:48 -->
+<Tasks version="6.0">
+  <ProjectScanFilter></ProjectScanFilter>
+  <Task priority="1" completed="False" type="1" uid="{48214a69-b907-48ff-92eb-2ad797ea0d82}">
+    <Summary>TODO: not implemented yet</Summary>
+    <Description></Description>
+    <Created>2020-01-06, 22:54:57</Created>
+    <Resource>
+      <Filename>Ui_pid_mainwindow_ctrl.py</Filename>
+      <Linenumber>36</Linenumber>
+    </Resource>
+  </Task>
+  <Task priority="1" completed="False" type="1" uid="{70d18544-c072-479d-b836-3fe8ebcaf861}">
+    <Summary>TODO: not implemented yet</Summary>
+    <Description></Description>
+    <Created>2020-01-06, 22:54:57</Created>
+    <Resource>
+      <Filename>Ui_pid_mainwindow_ctrl.py</Filename>
+      <Linenumber>44</Linenumber>
+    </Resource>
+  </Task>
+</Tasks>
