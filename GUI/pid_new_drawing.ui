@@ -101,7 +101,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_subvol_no">
+  <widget class="QLineEdit" name="lineEdit_drawing_subvol_no">
    <property name="geometry">
     <rect>
      <x>540</x>
@@ -111,7 +111,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_vol_name">
+  <widget class="QLineEdit" name="lineEdit_drawing_name">
    <property name="geometry">
     <rect>
      <x>100</x>
@@ -144,7 +144,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>本次出版的分卷号</string>
+    <string>本次出版的分册号</string>
    </property>
   </widget>
   <widget class="QRadioButton" name="radioButton_integrity">
