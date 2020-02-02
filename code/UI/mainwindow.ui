@@ -30,7 +30,7 @@
      <attribute name="title">
       <string>A</string>
      </attribute>
-     <widget class="QPushButton" name="pushButton_new_drawing">
+     <widget class="QPushButton" name="pushButton_new_review_proccess">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -40,7 +40,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>新图纸</string>
+       <string>新建审查流程</string>
       </property>
      </widget>
      <widget class="QPushButton" name="pushButton_review_report">

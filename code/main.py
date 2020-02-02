@@ -1,8 +1,8 @@
-#!/usr/bin/env python
+# pid - main
+# 2020/1/31 - 12:55
+# Copyright 2020 Wang D.Q <Wang D.Q@PyCharm>
+# !/venv python
 # -*- coding: utf-8 -*-
-#  main.py
-#  Copyright 2020 Wang D.Q <Wang D.Q@DESKTOP-LTKS88H>
-#  2020/01/31 12:55:23
 
 # import os
 import sys
@@ -21,6 +21,6 @@ from UI.Ui_mainwindow_ctrl import *
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    mainwindow = Ui_mainwindow_ctrl()
+    mainwindow = Mainwindow_ctrl()
     mainwindow.show()
     sys.exit(app.exec_())

@@ -19,9 +19,9 @@ class Ui_MainWindow(object):
         self.tabWidget_mainwindow.setObjectName("tabWidget_mainwindow")
         self.tab_drawings = QtWidgets.QWidget()
         self.tab_drawings.setObjectName("tab_drawings")
-        self.pushButton_new_drawing = QtWidgets.QPushButton(self.tab_drawings)
-        self.pushButton_new_drawing.setGeometry(QtCore.QRect(10, 10, 83, 23))
-        self.pushButton_new_drawing.setObjectName("pushButton_new_drawing")
+        self.pushButton_new_review_proccess = QtWidgets.QPushButton(self.tab_drawings)
+        self.pushButton_new_review_proccess.setGeometry(QtCore.QRect(10, 10, 83, 23))
+        self.pushButton_new_review_proccess.setObjectName("pushButton_new_review_proccess")
         self.pushButton_review_report = QtWidgets.QPushButton(self.tab_drawings)
         self.pushButton_review_report.setGeometry(QtCore.QRect(110, 10, 90, 23))
         self.pushButton_review_report.setObjectName("pushButton_review_report")
@@ -50,7 +50,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.pushButton_new_drawing.setText(_translate("MainWindow", "新图纸"))
+        self.pushButton_new_review_proccess.setText(_translate("MainWindow", "新建审查流程"))
         self.pushButton_review_report.setText(_translate("MainWindow", "图纸送审"))
         self.pushButton_drawing_no_input.setText(_translate("MainWindow", "Go"))
         self.tabWidget_mainwindow.setTabText(self.tabWidget_mainwindow.indexOf(self.tab_drawings), _translate("MainWindow", "A"))

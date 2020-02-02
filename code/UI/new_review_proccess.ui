@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Dialog_new_drawing</class>
- <widget class="QDialog" name="Dialog_new_drawing">
+ <class>Dialog_new_review_proccess</class>
+ <widget class="QDialog" name="Dialog_new_review_proccess">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>新图纸</string>
+   <string>新建审查流程</string>
   </property>
   <property name="sizeGripEnabled">
    <bool>true</bool>
@@ -193,7 +193,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>accepted()</signal>
-   <receiver>Dialog_new_drawing</receiver>
+   <receiver>Dialog_new_review_proccess</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -209,7 +209,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>rejected()</signal>
-   <receiver>Dialog_new_drawing</receiver>
+   <receiver>Dialog_new_review_proccess</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
