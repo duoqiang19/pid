@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'D:\GitHub\pid\bin\UI\mainwindow.ui'
+# Form implementation generated from reading ui file 'D:\GitHub\pid\code\UI\mainwindow.ui'
 #
 # Created by: PyQt5 UI code generator 5.11.3
 #
@@ -11,11 +11,11 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(778, 600)
+        MainWindow.resize(390, 290)
         self.centralWidget = QtWidgets.QWidget(MainWindow)
         self.centralWidget.setObjectName("centralWidget")
         self.tabWidget_mainwindow = QtWidgets.QTabWidget(self.centralWidget)
-        self.tabWidget_mainwindow.setGeometry(QtCore.QRect(30, 80, 661, 411))
+        self.tabWidget_mainwindow.setGeometry(QtCore.QRect(0, 0, 381, 201))
         self.tabWidget_mainwindow.setObjectName("tabWidget_mainwindow")
         self.tab_drawings = QtWidgets.QWidget()
         self.tab_drawings.setObjectName("tab_drawings")
@@ -36,7 +36,7 @@ class Ui_MainWindow(object):
         self.tab_specifications.setObjectName("tab_specifications")
         self.tabWidget_mainwindow.addTab(self.tab_specifications, "")
         self.label_status_bar = QtWidgets.QLabel(self.centralWidget)
-        self.label_status_bar.setGeometry(QtCore.QRect(10, 510, 761, 81))
+        self.label_status_bar.setGeometry(QtCore.QRect(0, 200, 381, 81))
         self.label_status_bar.setTextFormat(QtCore.Qt.AutoText)
         self.label_status_bar.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
         self.label_status_bar.setWordWrap(True)

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>778</width>
-    <height>600</height>
+    <width>390</width>
+    <height>290</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,10 +17,10 @@
    <widget class="QTabWidget" name="tabWidget_mainwindow">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>80</y>
-      <width>661</width>
-      <height>411</height>
+      <x>0</x>
+      <y>0</y>
+      <width>381</width>
+      <height>201</height>
      </rect>
     </property>
     <property name="currentIndex">
@@ -89,9 +89,9 @@
    <widget class="QLabel" name="label_status_bar">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>510</y>
-      <width>761</width>
+      <x>0</x>
+      <y>200</y>
+      <width>381</width>
       <height>81</height>
      </rect>
     </property>

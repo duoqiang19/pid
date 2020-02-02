@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'D:\GitHub\pid\bin\UI\new_drawing.ui'
+# Form implementation generated from reading ui file 'D:\GitHub\pid\code\UI\new_drawing.ui'
 #
 # Created by: PyQt5 UI code generator 5.11.3
 #
