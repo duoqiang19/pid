@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>390</width>
-    <height>290</height>
+    <width>420</width>
+    <height>220</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,10 +17,10 @@
    <widget class="QTabWidget" name="tabWidget_mainwindow">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>381</width>
-      <height>201</height>
+      <x>10</x>
+      <y>10</y>
+      <width>400</width>
+      <height>200</height>
      </rect>
     </property>
     <property name="currentIndex">
@@ -35,8 +35,8 @@
        <rect>
         <x>10</x>
         <y>10</y>
-        <width>83</width>
-        <height>23</height>
+        <width>80</width>
+        <height>25</height>
        </rect>
       </property>
       <property name="text">
@@ -46,10 +46,10 @@
      <widget class="QPushButton" name="pushButton_review_report">
       <property name="geometry">
        <rect>
-        <x>110</x>
+        <x>100</x>
         <y>10</y>
-        <width>90</width>
-        <height>23</height>
+        <width>80</width>
+        <height>25</height>
        </rect>
       </property>
       <property name="text">
@@ -59,24 +59,36 @@
      <widget class="QLineEdit" name="lineEdit_drawing_no_input">
       <property name="geometry">
        <rect>
-        <x>160</x>
-        <y>80</y>
-        <width>113</width>
-        <height>20</height>
+        <x>190</x>
+        <y>10</y>
+        <width>80</width>
+        <height>23</height>
        </rect>
+      </property>
+      <property name="text">
+       <string>C0101</string>
       </property>
      </widget>
      <widget class="QPushButton" name="pushButton_drawing_no_input">
       <property name="geometry">
        <rect>
-        <x>290</x>
-        <y>80</y>
-        <width>75</width>
-        <height>23</height>
+        <x>280</x>
+        <y>10</y>
+        <width>80</width>
+        <height>25</height>
        </rect>
+      </property>
+      <property name="tabletTracking">
+       <bool>false</bool>
       </property>
       <property name="text">
        <string>Go</string>
+      </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
+      <property name="default">
+       <bool>false</bool>
       </property>
      </widget>
     </widget>
@@ -85,28 +97,6 @@
       <string>B</string>
      </attribute>
     </widget>
-   </widget>
-   <widget class="QLabel" name="label_status_bar">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>200</y>
-      <width>381</width>
-      <height>81</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>status bar</string>
-    </property>
-    <property name="textFormat">
-     <enum>Qt::AutoText</enum>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-    </property>
-    <property name="wordWrap">
-     <bool>true</bool>
-    </property>
    </widget>
   </widget>
  </widget>

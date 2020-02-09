@@ -13,7 +13,7 @@ class Handle_new_review_proccess():
     def __init__(self, address):
         self.address = address
         self.book = openpyxl.load_workbook(self.address)
-        self.sheet = self.book['图纸']
+        self.sheet = self.book['出图详细']
         self.rows_no = self.sheet.max_row
         self.cols_no = self.sheet.max_column
 
@@ -47,7 +47,7 @@ if __name__ == '__main__':
     database_address = str(folder_path + "/data/drawings.xlsx").replace("\\", "/")
     test_drawing_info = {'drawing_no':'C0101'}
 
-    test_run = Handle_drawing_info(database_address)
+    test_run = Handle_new_review_proccess(database_address)
     #test_run.write_new_drawing_info(test_drawing_info)
     print(test_run.rows_no, test_run.cols_no)
     for row in test_run.sheet.rows:
