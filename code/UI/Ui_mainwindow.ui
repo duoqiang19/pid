@@ -28,7 +28,37 @@
         <item row="0" column="0">
          <widget class="QComboBox" name="comboBox_profession"/>
         </item>
-        <item row="2" column="0" colspan="6">
+        <item row="1" column="0">
+         <widget class="QPushButton" name="pushButton_review_report">
+          <property name="text">
+           <string>图纸送审</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QLineEdit" name="lineEdit_drawing_no_input">
+          <property name="text">
+           <string>C0101</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="3">
+         <widget class="QPushButton" name="pushButton_drawing_no_input">
+          <property name="tabletTracking">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>Go</string>
+          </property>
+          <property name="autoDefault">
+           <bool>false</bool>
+          </property>
+          <property name="default">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0" colspan="7">
          <widget class="QTableWidget" name="tableWidget">
           <row>
            <property name="text">
@@ -72,43 +102,17 @@
           </column>
          </widget>
         </item>
-        <item row="0" column="2">
+        <item row="0" column="3">
          <widget class="QPushButton" name="pushButton_new_review_flow">
           <property name="text">
            <string>新建审查流程</string>
           </property>
          </widget>
         </item>
-        <item row="0" column="1">
-         <widget class="QLineEdit" name="lineEdit_drawing_qty"/>
-        </item>
-        <item row="1" column="0">
-         <widget class="QPushButton" name="pushButton_review_report">
-          <property name="text">
-           <string>图纸送审</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QLineEdit" name="lineEdit_drawing_no_input">
-          <property name="text">
-           <string>C0101</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="2">
-         <widget class="QPushButton" name="pushButton_drawing_no_input">
-          <property name="tabletTracking">
-           <bool>false</bool>
-          </property>
-          <property name="text">
-           <string>Go</string>
-          </property>
-          <property name="autoDefault">
-           <bool>false</bool>
-          </property>
-          <property name="default">
-           <bool>false</bool>
+        <item row="0" column="2">
+         <widget class="QSpinBox" name="spinBox_drawing_qty">
+          <property name="minimum">
+           <number>1</number>
           </property>
          </widget>
         </item>

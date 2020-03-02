@@ -4,93 +4,266 @@
 # !/venv python
 # -*- coding: utf-8 -*-
 
-
-import os
-import sys
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtCore import *
-from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from UI.Ui_new_review_flow import Ui_Dialog_new_review_flow
-
 release_stage_list = ['施工图','备料图']
-
+'''
+sgl_nrf = signal_new_review_flow
+new_nfi = new_review_flow_info
+'''
 class Dialog_new_review_flow_ctrl(QDialog, Ui_Dialog_new_review_flow):
 
-    signalize_new_review_flow = pyqtSignal(dict)
+    sgl_nrf = pyqtSignal(dict)
 
-    def __init__(self, signalize_review_info, parent=None):
+    def __init__(self, review_info, parent=None):
         super(Dialog_new_review_flow_ctrl, self).__init__(parent)
-        self.new_review_flow_info = signalize_review_info
+        self.new_nfi = review_info
         self.setupUi(self)
-        self.buttonBox.accepted.connect(self.emit_signal_new_review_flow_accepted)
-        self.buttonBox.rejected.connect(self.emit_signal_new_review_flow_rejected)
-        for element in release_stage_list:
-            self.comboBox_release_stage.addItem(element)
+
         self.dateEdit_start_flow.setDisplayFormat("yyyy.MM.dd")
         self.dateEdit_start_flow.setDate(QDate.currentDate())
-        self.lineEdit_profession.setText(str(self.new_review_flow_info['profession']))
-        self.drawing_qty = 1
+        self.label_profession.setText(str(self.new_nfi['profession']))
+        self.label_drawing_qty.setText(str(self.new_nfi['drawing_qty']))
+        for element in release_stage_list:
+            self.comboBox_release_stage.addItem(element)
 
-        self.pushButton_qty_add.clicked.connect(lambda: self.setupUi_qty_add(self))
-        self.pushButton_qty_minus.clicked.connect(lambda: self.setupUi_qty_minus(self))
-        # self.setupUi(self)
-        self.show()
+        self.buttonBox.accepted.connect(self.emit_signal_new_review_flow_accepted)
+        self.buttonBox.rejected.connect(self.emit_signal_new_review_flow_rejected)
     ''' -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- '''
     def on_buttonBox_accepted(self):
-        self.new_review_flow_info['r1_review_no'] = self.lineEdit_r1_review_no.text()
-        # self.new_review_flow_info['drawing_qty'] = self.drawing_qty
-        # self.new_review_flow_info['profession'] = self.comboBox_profession.currentText()
-        self.new_review_flow_info['release_stage'] = self.comboBox_release_stage.currentText()
-        self.new_review_flow_info['date_start_flow'] = self.dateEdit_start_flow.date()
-        self.new_review_flow_info['drawing_no_01'] = self.lineEdit_drawing_no_01.text()
-        self.new_review_flow_info['drawing_title_01'] = self.lineEdit_drawing_title_01.text()
-        self.new_review_flow_info['vol_title_01'] = self.lineEdit_vol_title_01.text()
+        self.new_nfi['r1_review_no'] = self.lineEdit_r1_review_no.text()
+        self.new_nfi['release_stage'] = self.comboBox_release_stage.currentText()
+        self.new_nfi['date_start_flow'] = self.dateEdit_start_flow.date()
+        self.new_nfi['drawing_no_01'] = self.lineEdit_drawing_no.text()
+        self.new_nfi['drawing_title_01'] = self.lineEdit_drawing_title.text()
+        self.new_nfi['vol_title_01'] = self.lineEdit_vol_title.text()
 
     def emit_signal_new_review_flow_accepted(self):
-        signal_new_review_flow = self.new_review_flow_info
-        self.signalize_new_review_flow.emit(signal_new_review_flow)
+        self.sgl_nrf.emit(self.new_nfi)
     ''' -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- '''
     def on_buttonBox_rejected(self):
-        self.new_review_flow_info = {}
+        self.new_nfi = {}
 
     def emit_signal_new_review_flow_rejected(self):
-        signal_new_review_flow = self.new_review_flow_info
-        self.signalize_new_review_flow.emit(signal_new_review_flow)
+        self.sgl_nrf.emit(self.new_nfi)
     ''' -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- '''
-    def setupUi_qty_add(self, Dialog_new_review_flow):
-        self.drawing_qty += 1
-        if self.drawing_qty > 99:
-            self.drawing_qty = 99
-        print(self.drawing_qty)
-        Dialog_new_review_flow.resize(842, 62 + 31 * int(self.drawing_qty))
-        # for i in range(self.drawing_qty):
+
+    def setupUi(self, Dialog_new_review_flow):
+        Dialog_new_review_flow.setObjectName("Dialog_new_review_flow")
+        Dialog_new_review_flow.resize(750, 80+40*self.new_nfi['drawing_qty'])
+        Dialog_new_review_flow.setMinimumSize(QtCore.QSize(750, 80+40*self.new_nfi['drawing_qty']))
+        Dialog_new_review_flow.setMaximumSize(QtCore.QSize(900, 4040))
+        Dialog_new_review_flow.setSizeGripEnabled(True)
+
+        self.verticalLayout = QtWidgets.QVBoxLayout(Dialog_new_review_flow)
+        self.verticalLayout.setObjectName("verticalLayout")
+
+        self.horizontalLayout_main_info = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_main_info.setObjectName("horizontalLayout_main_info")
+
+        self.label_r1_review_no = QtWidgets.QLabel(Dialog_new_review_flow)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label_r1_review_no.sizePolicy().hasHeightForWidth())
+        self.label_r1_review_no.setSizePolicy(sizePolicy)
+        self.label_r1_review_no.setObjectName("label_r1_review_no")
+        self.horizontalLayout_main_info.addWidget(self.label_r1_review_no)
+        self.lineEdit_r1_review_no = QtWidgets.QLineEdit(Dialog_new_review_flow)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.lineEdit_r1_review_no.sizePolicy().hasHeightForWidth())
+        self.lineEdit_r1_review_no.setSizePolicy(sizePolicy)
+        self.lineEdit_r1_review_no.setObjectName("lineEdit_r1_review_no")
+        self.horizontalLayout_main_info.addWidget(self.lineEdit_r1_review_no)
+        self.label_str_01 = QtWidgets.QLabel(Dialog_new_review_flow)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label_str_01.sizePolicy().hasHeightForWidth())
+        self.label_str_01.setSizePolicy(sizePolicy)
+        self.label_str_01.setObjectName("label_str_01")
+        self.horizontalLayout_main_info.addWidget(self.label_str_01)
+        self.label_profession = QtWidgets.QLabel(Dialog_new_review_flow)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label_profession.sizePolicy().hasHeightForWidth())
+        self.label_profession.setSizePolicy(sizePolicy)
+        self.label_profession.setObjectName("label_profession")
+        self.horizontalLayout_main_info.addWidget(self.label_profession)
+        self.label_str_02 = QtWidgets.QLabel(Dialog_new_review_flow)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label_str_02.sizePolicy().hasHeightForWidth())
+        self.label_str_02.setSizePolicy(sizePolicy)
+        self.label_str_02.setObjectName("label_str_02")
+        self.horizontalLayout_main_info.addWidget(self.label_str_02)
+        self.label_str_03 = QtWidgets.QLabel(Dialog_new_review_flow)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label_str_03.sizePolicy().hasHeightForWidth())
+        self.label_str_03.setSizePolicy(sizePolicy)
+        self.label_str_03.setObjectName("label_str_03")
+        self.horizontalLayout_main_info.addWidget(self.label_str_03)
+        self.label_drawing_qty = QtWidgets.QLabel(Dialog_new_review_flow)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label_drawing_qty.sizePolicy().hasHeightForWidth())
+        self.label_drawing_qty.setSizePolicy(sizePolicy)
+        self.label_drawing_qty.setObjectName("label_drawing_qty")
+        self.horizontalLayout_main_info.addWidget(self.label_drawing_qty)
+        self.label_str_04 = QtWidgets.QLabel(Dialog_new_review_flow)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label_str_04.sizePolicy().hasHeightForWidth())
+        self.label_str_04.setSizePolicy(sizePolicy)
+        self.label_str_04.setObjectName("label_str_04")
+        self.horizontalLayout_main_info.addWidget(self.label_str_04)
+        self.label_release_stage = QtWidgets.QLabel(Dialog_new_review_flow)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label_release_stage.sizePolicy().hasHeightForWidth())
+        self.label_release_stage.setSizePolicy(sizePolicy)
+        self.label_release_stage.setObjectName("label_release_stage")
+        self.horizontalLayout_main_info.addWidget(self.label_release_stage)
+        self.comboBox_release_stage = QtWidgets.QComboBox(Dialog_new_review_flow)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.comboBox_release_stage.sizePolicy().hasHeightForWidth())
+        self.comboBox_release_stage.setSizePolicy(sizePolicy)
+        self.comboBox_release_stage.setEditable(True)
+        self.comboBox_release_stage.setObjectName("comboBox_release_stage")
+        self.horizontalLayout_main_info.addWidget(self.comboBox_release_stage)
+        self.label_date = QtWidgets.QLabel(Dialog_new_review_flow)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label_date.sizePolicy().hasHeightForWidth())
+        self.label_date.setSizePolicy(sizePolicy)
+        self.label_date.setTextInteractionFlags(QtCore.Qt.LinksAccessibleByMouse | QtCore.Qt.TextEditable)
+        self.label_date.setObjectName("label_date")
+        self.horizontalLayout_main_info.addWidget(self.label_date)
+        self.dateEdit_start_flow = QtWidgets.QDateEdit(Dialog_new_review_flow)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.dateEdit_start_flow.sizePolicy().hasHeightForWidth())
+        self.dateEdit_start_flow.setSizePolicy(sizePolicy)
+        self.dateEdit_start_flow.setObjectName("dateEdit_start_flow")
+        self.horizontalLayout_main_info.addWidget(self.dateEdit_start_flow)
+        self.label_space = QtWidgets.QLabel(Dialog_new_review_flow)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label_space.sizePolicy().hasHeightForWidth())
+        self.label_space.setSizePolicy(sizePolicy)
+        self.label_space.setText("")
+        self.label_space.setObjectName("label_space")
+        self.horizontalLayout_main_info.addWidget(self.label_space)
+        self.verticalLayout.addLayout(self.horizontalLayout_main_info)
+
+        self.horizontalLayout = QtWidgets.QHBoxLayout()
+        self.horizontalLayout.setObjectName("horizontalLayout")
         self.label_drawing_no = QtWidgets.QLabel(Dialog_new_review_flow)
-        self.label_drawing_no.setObjectName("label_drawing_no_" + str(self.drawing_qty))
-        self.gridLayout.addWidget(self.label_drawing_no, self.drawing_qty, 0, 1, 1)
-        _translate = QtCore.QCoreApplication.translate
-        self.label_drawing_no.setText(_translate("Dialog_new_review_flow", "图号" + str(self.drawing_qty)))
-        self.buttonBox.deleteLater()
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label_drawing_no.sizePolicy().hasHeightForWidth())
+        self.label_drawing_no.setSizePolicy(sizePolicy)
+        self.label_drawing_no.setObjectName("label_drawing_no")
+        self.horizontalLayout.addWidget(self.label_drawing_no)
+        self.lineEdit_drawing_no = QtWidgets.QLineEdit(Dialog_new_review_flow)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.lineEdit_drawing_no.sizePolicy().hasHeightForWidth())
+        self.lineEdit_drawing_no.setSizePolicy(sizePolicy)
+        self.lineEdit_drawing_no.setObjectName("lineEdit_drawing_no")
+        self.horizontalLayout.addWidget(self.lineEdit_drawing_no)
+        self.label_drawing_title = QtWidgets.QLabel(Dialog_new_review_flow)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label_drawing_title.sizePolicy().hasHeightForWidth())
+        self.label_drawing_title.setSizePolicy(sizePolicy)
+        self.label_drawing_title.setObjectName("label_drawing_title")
+        self.horizontalLayout.addWidget(self.label_drawing_title)
+        self.lineEdit_drawing_title = QtWidgets.QLineEdit(Dialog_new_review_flow)
+        self.lineEdit_drawing_title.setObjectName("lineEdit_drawing_title")
+        self.horizontalLayout.addWidget(self.lineEdit_drawing_title)
+        self.label_vol_title = QtWidgets.QLabel(Dialog_new_review_flow)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label_vol_title.sizePolicy().hasHeightForWidth())
+        self.label_vol_title.setSizePolicy(sizePolicy)
+        self.label_vol_title.setObjectName("label_vol_title")
+        self.horizontalLayout.addWidget(self.label_vol_title)
+        self.lineEdit_vol_title = QtWidgets.QLineEdit(Dialog_new_review_flow)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.lineEdit_vol_title.sizePolicy().hasHeightForWidth())
+        self.lineEdit_vol_title.setSizePolicy(sizePolicy)
+        self.lineEdit_vol_title.setObjectName("lineEdit_vol_title")
+        self.horizontalLayout.addWidget(self.lineEdit_vol_title)
+        self.radioButton_drawing_integrity = QtWidgets.QRadioButton(Dialog_new_review_flow)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.radioButton_drawing_integrity.sizePolicy().hasHeightForWidth())
+        self.radioButton_drawing_integrity.setSizePolicy(sizePolicy)
+        self.radioButton_drawing_integrity.setChecked(True)
+        self.radioButton_drawing_integrity.setObjectName("radioButton_drawing_integrity")
+        self.horizontalLayout.addWidget(self.radioButton_drawing_integrity)
+        self.verticalLayout.addLayout(self.horizontalLayout)
+
         self.buttonBox = QtWidgets.QDialogButtonBox(Dialog_new_review_flow)
         self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
         self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel | QtWidgets.QDialogButtonBox.Ok)
         self.buttonBox.setObjectName("buttonBox")
-        self.gridLayout.addWidget(self.buttonBox, self.drawing_qty+1 , 7, 1, 6)
+        self.verticalLayout.addWidget(self.buttonBox)
 
-    def setupUi_qty_minus(self, Dialog_new_review_flow):
-        self.drawing_qty -= 1
-        if self.drawing_qty < 1:
-            self.drawing_qty = 1
-        print(self.drawing_qty)
-        self.label_drawing_no.deleteLater()
-        # self.buttonBox.deleteLater()
-        # self.buttonBox = QtWidgets.QDialogButtonBox(Dialog_new_review_flow)
-        # self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
-        # self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel | QtWidgets.QDialogButtonBox.Ok)
-        # self.buttonBox.setObjectName("buttonBox")
-        # self.gridLayout.addWidget(self.buttonBox, self.drawing_qty + 1, 7, 1, 6)
-        Dialog_new_review_flow.resize(842, 62 + 31 * int(self.drawing_qty))
+        self.retranslateUi(Dialog_new_review_flow)
+        self.buttonBox.accepted.connect(Dialog_new_review_flow.accept)
+        self.buttonBox.rejected.connect(Dialog_new_review_flow.close)
+        QtCore.QMetaObject.connectSlotsByName(Dialog_new_review_flow)
+        Dialog_new_review_flow.setTabOrder(self.lineEdit_r1_review_no, self.comboBox_release_stage)
+        Dialog_new_review_flow.setTabOrder(self.comboBox_release_stage, self.dateEdit_start_flow)
+        Dialog_new_review_flow.setTabOrder(self.dateEdit_start_flow, self.lineEdit_drawing_no)
+        Dialog_new_review_flow.setTabOrder(self.lineEdit_drawing_no, self.lineEdit_drawing_title)
+        Dialog_new_review_flow.setTabOrder(self.lineEdit_drawing_title, self.lineEdit_vol_title)
+        Dialog_new_review_flow.setTabOrder(self.lineEdit_vol_title, self.radioButton_drawing_integrity)
 
+    def retranslateUi(self, Dialog_new_review_flow):
+        _translate = QtCore.QCoreApplication.translate
+        Dialog_new_review_flow.setWindowTitle(_translate("Dialog_new_review_flow", "新建审查流程"))
+        self.label_r1_review_no.setText(_translate("Dialog_new_review_flow", "审查号"))
+        self.lineEdit_r1_review_no.setText(_translate("Dialog_new_review_flow", "SC098-09"))
+        self.label_str_01.setText(_translate("Dialog_new_review_flow", "本次审查"))
+        self.label_profession.setText(_translate("Dialog_new_review_flow", "TextLabel"))
+        self.label_str_02.setText(_translate("Dialog_new_review_flow", "专业，"))
+        self.label_str_03.setText(_translate("Dialog_new_review_flow", "共"))
+        self.label_drawing_qty.setText(_translate("Dialog_new_review_flow", "TextLabel"))
+        self.label_str_04.setText(_translate("Dialog_new_review_flow", "册图纸。"))
+        self.label_release_stage.setText(_translate("Dialog_new_review_flow", "出图阶段"))
+        self.label_date.setText(_translate("Dialog_new_review_flow", "日期"))
+        self.label_drawing_no.setText(_translate("Dialog_new_review_flow", "图号1"))
+        self.lineEdit_drawing_no.setText(_translate("Dialog_new_review_flow", "T0987"))
+        self.label_drawing_title.setText(_translate("Dialog_new_review_flow", "卷册名称"))
+        self.lineEdit_drawing_title.setText(_translate("Dialog_new_review_flow", "主厂房布桩图(包括加热器平台桩、汽机底板桩)"))
+        self.label_vol_title.setText(_translate("Dialog_new_review_flow", "专业分卷"))
+        self.radioButton_drawing_integrity.setText(_translate("Dialog_new_review_flow", "完整卷册"))
 
-    ''' -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- '''
+''' -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- '''
 

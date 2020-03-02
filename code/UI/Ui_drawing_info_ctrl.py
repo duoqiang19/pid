@@ -24,9 +24,11 @@ class Dialog_drawing_info_ctrl(QDialog,Ui_Dialog_drawing_info):
         self.drawing_info = self.handle_drawing_info.read_drawing_info(signal_drawing_no['drawing_no'])
         self.setupUi(self)
         self.checkBox_info_changabilty.stateChanged.connect(lambda: self.info_changabilty_checked(self.checkBox_info_changabilty))
+
         print(signal_drawing_no)
         self.show()
         self.take_slot_drawing_no()
+        # self.buttonBox.accepted.connect(lambda: self.buttonBox_accepted)
         # TODO: REBUILD THE LINEEDITS
 
     ''' -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- '''
@@ -53,9 +55,14 @@ class Dialog_drawing_info_ctrl(QDialog,Ui_Dialog_drawing_info):
         self.lineEdit_review_status.setReadOnly(self.checkBox_info_changabilty.isChecked())
         self.lineEdit_planned_release_date.setReadOnly(self.checkBox_info_changabilty.isChecked())
 
+    ''' -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- '''
+    def buttonBox_accepted(self):
+        self.close()
+    ''' -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- '''
+
     def setupUi(self, Dialog_drawing_info):
         Dialog_drawing_info.setObjectName("Dialog_drawing_info")
-        Dialog_drawing_info.resize(520, 306)
+        Dialog_drawing_info.resize(787, 272)
         Dialog_drawing_info.setSizeGripEnabled(True)
         self.gridLayout = QtWidgets.QGridLayout(Dialog_drawing_info)
         self.gridLayout.setObjectName("gridLayout")
@@ -167,6 +174,8 @@ class Dialog_drawing_info_ctrl(QDialog,Ui_Dialog_drawing_info):
         self.gridLayout.addWidget(self.buttonBox, 9, 3, 1, 1)
 
         self.retranslateUi(Dialog_drawing_info)
+        self.buttonBox.rejected.connect(Dialog_drawing_info.close)
+        self.buttonBox.accepted.connect(Dialog_drawing_info.close)
         QtCore.QMetaObject.connectSlotsByName(Dialog_drawing_info)
         Dialog_drawing_info.setTabOrder(self.lineEdit_drawing_no, self.lineEdit_database_series_no)
         Dialog_drawing_info.setTabOrder(self.lineEdit_database_series_no, self.lineEdit_drawing_title)
